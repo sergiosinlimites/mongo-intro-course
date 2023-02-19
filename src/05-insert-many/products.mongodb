@@ -1,0 +1,28 @@
+use("store")
+// dangerous!
+db.products.drop();
+
+db.products.insertMany([
+  {
+    name: "product 1",
+    price: 1000
+  },
+  {
+    name: "product 2",
+    price: 1000
+  },
+  {
+    name: "product 3",
+    price: 1000
+  },
+  {
+    name: "product 4",
+    price: 1000
+  },
+  {
+    name: "product 5",
+    price: 1000
+  }
+])
+
+db.products.find();
