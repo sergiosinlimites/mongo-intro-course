@@ -1,0 +1,25 @@
+use("store")
+
+// this should be the first insertion of a new measure
+// db.iot.insertOne(
+//   {
+//     sensor: "A001",
+//     date: "2022-01-03",
+//     readings: [2,3,45]
+//   }
+// )
+
+// this should be exec after the first document insertion per day and sensor, but there is another way to do it
+db.iot.updateOne(
+  {
+    sensor: "A001",
+    date: "2022-01-03",
+  },
+  {
+    $push: {
+      readings: 23
+    }
+  }
+)
+
+db.iot.find()
