@@ -1,28 +1,28 @@
 use("sample_training");
 
 // set new field or modify it
-// db.zips.updateMany(
-//   { city: "CLEVELAND" },
-//   { $set: {
-//     newField: "hello"
-//   }}
-// );
+db.zips.updateMany(
+  { city: "CLEVELAND" },
+  { $set: {
+    newField: "hello"
+  }}
+);
 
 // rename field
-// db.zips.updateMany(
-//   { city: "CLEVELAND" },
-//   { $rename: {
-//     newField: "my_new_field"
-//   }}
-// );
+db.zips.updateMany(
+  { city: "CLEVELAND" },
+  { $rename: {
+    newField: "my_new_field"
+  }}
+);
 
 // unset field
-// db.zips.updateMany(
-//   { city: "CLEVELAND" },
-//   { $unset: {
-//     my_new_field: ""
-//   }}
-// );
+db.zips.updateMany(
+  { city: "CLEVELAND" },
+  { $unset: {
+    my_new_field: ""
+  }}
+);
 
 
 db.zips.find({ city: "CLEVELAND" });
