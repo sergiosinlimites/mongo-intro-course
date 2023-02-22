@@ -1,0 +1,12 @@
+use("store");
+
+db.products.updateOne(
+  { _id: 1 },
+  { $set: {
+    price: 800,
+    name: "product changed",
+    categories: ["principal"]
+  }}
+);
+
+db.products.find()

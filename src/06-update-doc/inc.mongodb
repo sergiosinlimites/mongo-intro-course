@@ -1,0 +1,10 @@
+use("store");
+
+db.products.updateOne(
+  { _id: 1 },
+  { $inc: {
+    price: 1000
+  }}
+);
+
+db.products.find()
