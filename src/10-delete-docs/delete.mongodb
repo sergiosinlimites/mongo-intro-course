@@ -1,0 +1,13 @@
+use("store")
+// deleting one
+// db.products.deleteOne({ _id: 1 })
+
+// deleting many
+db.products.deleteMany(
+  {
+    price: 100
+  }
+)
+
+// deleting all the documents
+db.products.drop();
