@@ -1,0 +1,30 @@
+use('store')
+
+// Using $eq
+// db.inventory.find(
+//   {
+//     qty: { $eq: 20 }
+//   }
+// )
+// Or
+// db.inventory.find(
+//   {
+//     qty: { $eq: 20 }
+//   }
+// )
+
+// db.inventory.find({ "item.name": "ab" })
+
+// Using $ne
+// db.inventory.find({ "item.name": { $ne: "ab" } })
+
+db.inventory.updateMany(
+  {
+    qty: { $ne: 20 }
+  },
+  {
+    $inc: {
+      qty: 10
+    }
+  }
+)
