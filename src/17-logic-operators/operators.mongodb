@@ -1,0 +1,46 @@
+use('sample_training')
+
+// implicit $and
+db.inspections.find(
+  {
+    sector: "Tax Preparers - 891",
+    result: "Violation Issued"
+  }
+).count()
+
+// Explicit $and
+db.inspections.find(
+  {
+    $and: [
+      { sector: "Tax Preparers - 891" },
+      { result: "Violation Issued" }
+    ]
+  }
+).count()
+
+// $or, this will equal or much bigger than the $and
+db.inspections.find(
+  {
+    $or: [
+      { sector: "Tax Preparers - 891" },
+      { result: "Violation Issued" }
+    ]
+  }
+).count()
+
+// $nor, 0 documents with one or the other
+db.inspections.find(
+  {
+    $nor: [
+      { sector: "Tax Preparers - 891" },
+      { result: "Violation Issued" }
+    ]
+  }
+).count()
+
+// $not, doesnt receive array, it applies to a field
+db.inspections.find(
+  {
+    result: { $not: { $regex: /Unable to locate/i } }
+  }
+)
