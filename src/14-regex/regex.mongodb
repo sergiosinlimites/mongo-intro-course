@@ -1,0 +1,36 @@
+use('store')
+
+db.inventory.find(
+  {
+    "item.description": { $regex: "line" }
+  }
+)
+
+// No matter upper o lower case
+db.inventory.find(
+  {
+    "item.description": { $regex: /LINE/i }
+  }
+)
+
+// Search at end
+db.inventory.find(
+  {
+    "item.description": { $regex: /LINE$/i }
+  }
+)
+
+// Search at begin
+db.inventory.find(
+  {
+    "item.description": { $regex: /^single/i }
+  }
+)
+
+// With multiline (begin of second line...)
+db.inventory.find(
+  {
+    "item.description": { $regex: /^s/mi }
+  }
+)
+
