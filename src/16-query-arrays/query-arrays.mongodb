@@ -1,0 +1,43 @@
+use('store')
+
+// Using $in for values
+db.inventory.find(
+  {
+    qty: { $in: [20,25] }
+  }
+)
+
+// Using $in for arrays
+db.inventory.find(
+  {
+    tags: { $in: ["book", "electronics"] }
+  }
+)
+
+// Using $nin also works, the opposite
+db.inventory.find(
+  {
+    tags: { $nin: ["book", "electronics"] }
+  }
+)
+
+// Using $all
+db.inventory.find({ tags: ["book", "school"] }) // will only work if the order is the same and only if the array has just the 2 elements
+// This is better for searching for a list of values in the same array, the order doesn't matter
+db.inventory.find(
+  {
+    tags: { $all: ["school", "book"] }
+  }
+)
+
+// Using $size
+// Finds the documents with array of 2 elements
+db.inventory.find({ tags: { $size: 2 } })
+
+// Using $elemMatch
+// Finds the documents where the array includes the object with field object = xyz
+db.survey.find(
+  {
+    results: { $elemMatch: { product: "xyz", score: { $gte: 7 } } }
+  }
+)
