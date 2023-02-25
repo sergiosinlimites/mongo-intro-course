@@ -1,0 +1,12 @@
+use('store')
+
+db.iot.updateMany(
+  {
+    sensor: "A001",
+  },
+  {
+    $pull: {
+      readings: { $gte: 3 }
+    }
+  }
+)

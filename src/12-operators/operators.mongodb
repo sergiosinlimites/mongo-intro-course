@@ -1,0 +1,12 @@
+use('store');
+
+// Using $gt & $gte
+db.inventory.find(
+  {
+    "item.name": "ab",
+    qty: {
+      $gte: 20,
+      $lte: 25
+    }
+  }
+)

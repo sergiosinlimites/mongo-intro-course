@@ -1,0 +1,17 @@
+use("store")
+
+// This creates the new doc if it doesnt exist, or updates it if if exists
+db.iot.updateOne(
+  {
+    sensor: "A001",
+    date: "2022-01-04",
+  },
+  {
+    $push: {
+      readings: 2334
+    }
+  },
+  {
+    upsert: true
+  }
+)
