@@ -1,0 +1,18 @@
+use("store")
+
+// Without expr
+db.monthlyBudget.find({ spent: { $gte: 100 } });
+// With expr
+db.monthlyBudget.find({
+  $expr: {
+    $gte: ["$spent", 100]
+  }
+})
+
+// Comparing two fields
+db.monthlyBudget.find({
+  $expr: {
+    $gte: ["$spent", "$budget"]
+  }
+})
+
