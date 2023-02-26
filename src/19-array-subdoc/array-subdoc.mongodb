@@ -1,0 +1,31 @@
+use('sample_training')
+
+db.trips.findOne(
+  {
+    "start station location.type": "Point"
+  }
+)
+
+// I can find the n person of an array
+db.companies.find({
+  "relationships.0.person.first_name": "Mike",
+}, {
+  name: 1,
+  relationships: 1
+}).count()
+
+// I want to find in all the positions
+db.companies.find({
+  "relationships": {
+    $elemMatch: {
+      "person.first_name": "Mike"
+    }
+  }
+}, {
+  name: 1,
+  /**
+   * specifications: The fields to
+   *   include or exclude.
+   */
+  ceo: { $first: "$relationships" }
+})
