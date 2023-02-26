@@ -1,0 +1,37 @@
+use('sample_airbnb')
+
+// This would be a normal query
+db.listingsAndReviews.find({
+  amenities: "Wifi"
+},
+{
+  price: 1,
+  amenities: 1
+})
+
+// This would be an aggregation query
+db.listingsAndReviews.aggregate([
+  {
+    $match: {
+      amenities: "Wifi"
+    }
+  },
+  {
+    $project: {
+      price: 1,
+      amenities: 1,
+      address: 1
+    }
+  },
+  {
+    // Here only the price, amenities and address fields are available
+    /**
+     * _id: The id of the group.
+     * fieldN: The first field name.
+     */
+    $group: {
+      _id: "$address.country",
+      count: { $sum: 1 }
+    }
+  }
+])
